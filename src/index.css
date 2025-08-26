@@ -1,3 +1,57 @@
+/* 🌌 Dark Mode (Default Space Theme) */
+:root {
+  /* Backgrounds */
+  --bg-main: #000000; /* Deep black space */
+  --bg-surface: #121212; /* Panels / menus with slight contrast */
+
+  /* Text */
+  --text-primary: #eaeaea;
+  --text-secondary: #a0a0a0;
+  --text-disabled: #666666;
+
+  /* Accents */
+  --accent-primary: #3a9bdc; /* Neon Blue */
+  --accent-secondary: #a56bff; /* Electric Purple */
+  --accent-glow: #3dffff; /* Aqua Cyan Glow */
+
+  /* Status */
+  --success: #4eff7a;
+  --warning: #ffaa33;
+  --danger: #ff3b3b;
+
+  /* HUD (Game UI elements) */
+  --hud-health: #ff3b3b;
+  --hud-energy: #3dffff;
+  --hud-score: #ffd700; /* Golden score text */
+}
+
+/* ☀️ Light Mode (Alternative Theme) */
+:root.light {
+  /* Backgrounds */
+  --bg-main: #f5f5f7;
+  --bg-surface: #ffffff;
+
+  /* Text */
+  --text-primary: #1e1e1e;
+  --text-secondary: #5c5c5c;
+  --text-disabled: #aaaaaa;
+
+  /* Accents */
+  --accent-primary: #1b2a4e; /* Deep Navy */
+  --accent-secondary: #6c4dff; /* Cosmic Purple */
+  --accent-glow: #1ec8c8; /* Turquoise */
+
+  /* Status */
+  --success: #2eb872;
+  --warning: #ffb347;
+  --danger: #e63946;
+
+  /* HUD (Game UI elements) */
+  --hud-health: #e63946;
+  --hud-energy: #1ec8c8;
+  --hud-score: #ff6f61; /* Coral score text */
+}
+
 /* 1. Use a more-intuitive box-sizing model */
 *,
 *::before,
@@ -72,4 +126,8 @@ h6 {
 #root,
 #__next {
   isolation: isolate;
+}
+
+.fa {
+  font-size: 1.5rem;
 }
