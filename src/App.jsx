@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import "./App.css";
-import EasyLevel from "./components/EasyLevel";
+import Level from "./components/Level";
 import Home from "./components/Home";
 import shuffleArr from "../fisherYates";
 import Modal from "./components/Modal";
@@ -14,6 +14,11 @@ function App() {
     score: 0,
     bestGameScore: 0,
   });
+  const [difficulty, setDifficulty] = useState("");
+
+  const changeDifficulty = (type) => {
+    setDifficulty(type);
+  };
 
   const handleGameOver = () => {
     setIsGameOver(true);
@@ -56,25 +61,29 @@ function App() {
     fetchData();
   }, []);
 
-  const easyCards = useMemo(() => {
-    return shuffleArr(galaxy).slice(0, LEVELS.EASY);
-  }, [galaxy, LEVELS.EASY]);
-  return (
-    <>
-      {isGameOver ? (
-        <Modal message={"lost"} handleRestart={handleRestart} />
-      ) : (
-        <EasyLevel
-          galaxy={easyCards}
-          handleGameOver={handleGameOver}
-          isGameOver={isGameOver}
-          score={gameScores.score}
-          bestScore={gameScores.bestGameScore}
-          updateGameScore={updateGameScore}
-        />
-      )}
-    </>
-  );
+  const cardsForDifficulty = useMemo(() => {
+    if (!difficulty) return [];
+    return shuffleArr(galaxy).slice(0, LEVELS[difficulty]);
+  }, [galaxy, difficulty]);
+
+  const renderPage = () => {
+    if (isGameOver)
+      return <Modal message="lost" handleRestart={handleRestart} />;
+
+    if (!difficulty) return <Home changeDifficulty={changeDifficulty} />;
+
+    return (
+      <Level
+        galaxy={cardsForDifficulty}
+        handleGameOver={handleGameOver}
+        isGameOver={isGameOver}
+        score={gameScores.score}
+        bestScore={gameScores.bestGameScore}
+        updateGameScore={updateGameScore}
+      />
+    );
+  };
+  return <>{renderPage()}</>;
 }
 
 export default App;

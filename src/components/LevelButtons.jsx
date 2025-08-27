@@ -1,6 +1,6 @@
-export default function LevelButtons({ btnName }) {
+export default function LevelButtons({ btnName, onClick }) {
   return (
-    <button className="levelBtn" type="">
+    <button className="levelBtn" type="" onClick={onClick}>
       {btnName}
     </button>
   );

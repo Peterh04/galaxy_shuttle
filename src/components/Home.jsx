@@ -8,7 +8,7 @@ import spaceMusic from "../assets/space-music.mp3";
 import { Howl } from "howler";
 import ReactHowler from "react-howler";
 
-export default function Home() {
+export default function Home({ changeDifficulty }) {
   const [isMute, setIsMute] = useState(true);
 
   const handleMute = () => {
@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div className="home">
       <h2>GALAXY SHUFFLE</h2>
-      <Levels />
+      <Levels changeDifficulty={changeDifficulty} />
 
       <ReactHowler
         src={spaceMusic}

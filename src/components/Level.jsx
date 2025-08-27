@@ -1,12 +1,18 @@
-export default function Level(
+import Cards from "./Cards";
+import "../styles/levels.css";
+import "../styles/home.css";
+import { useEffect, useState } from "react";
+
+export default function Level({
   galaxy,
   handleGameOver,
   isGameOver,
   score,
   updateGameScore,
-  bestScore
-) {
+  bestScore,
+}) {
   const [selected, setSelected] = useState([]);
+
   const selectCard = (card) => {
     if (selected.includes(card)) {
       handleGameOver();
