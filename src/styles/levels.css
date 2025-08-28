@@ -32,17 +32,28 @@
     0 0 40px var(--accent-glow);
   transform: scale(1.05);
 }
-/* 
-showcase card styles */
-.showCaseCards {
+
+.levelPage {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+
   align-items: center;
 
-  flex-wrap: wrap;
+  padding: 50px;
 
   width: 100%;
   height: 100vh;
+}
+/* 
+showcase card styles */
+.levelPage > .showCaseCards {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 50px;
 }
 
 /* cards styles */
@@ -53,18 +64,30 @@ showcase card styles */
 
   position: relative;
 
-  height: 400px;
-  max-width: 90vw; /* responsive max width */
-  width: 300px;
+  height: 310px;
+  max-width: 90vw;
+  width: 265px;
 
   border-radius: 10px;
 
   background-color: var(--accent-primary);
 
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-bottom: 50px;
+  margin-right: 15px;
+  margin-left: 15px;
 
   cursor: pointer;
+}
+
+.card > h4 {
+  display: flex;
+
+  margin: 10px;
+  width: 100%;
+
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .card > .infoBtn {
@@ -73,11 +96,11 @@ showcase card styles */
   align-items: center;
   position: absolute;
 
-  right: 7px;
-  top: 7px;
+  right: 10px;
+  top: 10px;
 
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
 
   border: none;
   border-radius: 50%;
@@ -91,12 +114,11 @@ showcase card styles */
   display: flex;
   background-color: transparent;
 
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-radius: 10px;
 
   z-index: 50;
 
-  height: 350px;
+  height: 200px;
   width: 100%;
 
   overflow: hidden;
@@ -123,8 +145,6 @@ showcase card styles */
   min-height: 200px;
   max-height: 250px;
   max-width: 450px;
-
-  background-color: red;
 
   border-radius: 10px;
 

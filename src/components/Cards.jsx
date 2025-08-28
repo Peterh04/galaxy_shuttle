@@ -21,7 +21,7 @@ export default function Cards({ image, name, info, click }) {
       <div className="imageContainer">
         <img className="cardImg" src={image}></img>
       </div>
-      <h3 className={name}>{name}</h3>
+      <h4 className={name}>{name}</h4>
 
       {isModalOpen && (
         <div className="cardInfo">

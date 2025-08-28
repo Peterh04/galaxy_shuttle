@@ -53,7 +53,17 @@ function App() {
           throw new Error(`HTTP error!  status: ${response.status}`);
         const result = await response.json();
 
-        setGalaxy(result.collection.items.slice(0, 50));
+        setGalaxy(
+          result.collection.items
+            .slice(0, 50)
+            .filter(
+              (galaxy) =>
+                (galaxy.data[0].title.split(" ").length <= 3 &&
+                  galaxy.data[0].title.split(" ")[0].startsWith("G")) ||
+                galaxy.data[0].title.split(" ")[0].startsWith("Frankenstein") ||
+                galaxy.data[0].title.split(" ")[0].startsWith("Andromeda")
+            )
+        );
       } catch (err) {
         console.log(err);
       }
@@ -63,6 +73,7 @@ function App() {
 
   const cardsForDifficulty = useMemo(() => {
     if (!difficulty) return [];
+    console.log(galaxy);
     return shuffleArr(galaxy).slice(0, LEVELS[difficulty]);
   }, [galaxy, difficulty]);
 

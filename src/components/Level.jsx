@@ -34,24 +34,25 @@ export default function Level({
 
   if (!galaxy || galaxy.length == 0) return null;
   return (
-    <div className="showCaseCards">
+    <div className="levelPage">
       <h2>Game Score : {score}</h2>
       <h3>Best Game score : {bestScore}</h3>
-
-      {galaxy.map((gal, gIndex) =>
-        gal.data?.map((item, iIndex) => (
-          <Cards
-            key={`${gIndex} - ${iIndex}`}
-            name={item.title}
-            image={gal.links?.[0]?.href}
-            info={item.description}
-            click={() => {
-              selectCard(gal);
-              shuffle(galaxy);
-            }}
-          />
-        ))
-      )}
+      <div className="showCaseCards">
+        {galaxy.map((gal, gIndex) =>
+          gal.data?.map((item, iIndex) => (
+            <Cards
+              key={`${gIndex} - ${iIndex}`}
+              name={item.title}
+              image={gal.links?.[0]?.href}
+              info={item.description}
+              click={() => {
+                selectCard(gal);
+                shuffle(galaxy);
+              }}
+            />
+          ))
+        )}
+      </div>
     </div>
   );
 }
