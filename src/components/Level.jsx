@@ -2,6 +2,7 @@ import Cards from "./Cards";
 import "../styles/levels.css";
 import "../styles/home.css";
 import { useEffect, useState } from "react";
+import InfoModal from "./InfoModal";
 
 export default function Level({
   galaxy,
@@ -10,8 +11,11 @@ export default function Level({
   score,
   updateGameScore,
   bestScore,
+  cardInfo,
+  getCardsInfo,
 }) {
   const [selected, setSelected] = useState([]);
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
 
   const selectCard = (card) => {
     if (selected.includes(card)) {
@@ -26,6 +30,14 @@ export default function Level({
 
   const shuffle = (cards) => {
     return cards.sort(() => Math.random() - 0.5);
+  };
+
+  const openModal = () => {
+    setIsInfoModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsInfoModalOpen(false);
   };
 
   useEffect(() => {
@@ -49,10 +61,13 @@ export default function Level({
                 selectCard(gal);
                 shuffle(galaxy);
               }}
+              getCardsInfo={() => getCardsInfo(item.description)}
+              openModal={openModal}
             />
           ))
         )}
       </div>
+      {isInfoModalOpen && <InfoModal info={cardInfo} closeModal={closeModal} />}
     </div>
   );
 }

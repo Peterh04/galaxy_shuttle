@@ -15,6 +15,11 @@ function App() {
     bestGameScore: 0,
   });
   const [difficulty, setDifficulty] = useState("");
+  const [cardInfo, setCardInfo] = useState("");
+
+  const getCardsInfo = (info) => {
+    setCardInfo(info);
+  };
 
   const changeDifficulty = (type) => {
     setDifficulty(type);
@@ -26,7 +31,14 @@ function App() {
 
   const handleRestart = () => {
     setIsGameOver(false);
-    setGameScores((prev) => ({ ...prev, score: 0 })); // reset only score
+    setGameScores((prev) => ({ ...prev, score: 0 }));
+  };
+
+  const handleQuitGame = () => {
+    setGameScores((prev) => ({ ...prev, score: 0, bestGameScore: 0 }));
+    setDifficulty("");
+    setCardInfo("");
+    setIsGameOver(false);
   };
 
   const updateGameScore = () => {
@@ -59,7 +71,7 @@ function App() {
             .filter(
               (galaxy) =>
                 (galaxy.data[0].title.split(" ").length <= 3 &&
-                  galaxy.data[0].title.split(" ")[0].startsWith("G")) ||
+                  galaxy.data[0].title.split(" ")[0].startsWith("Galaxy")) ||
                 galaxy.data[0].title.split(" ")[0].startsWith("Frankenstein") ||
                 galaxy.data[0].title.split(" ")[0].startsWith("Andromeda")
             )
@@ -79,7 +91,13 @@ function App() {
 
   const renderPage = () => {
     if (isGameOver)
-      return <Modal message="lost" handleRestart={handleRestart} />;
+      return (
+        <Modal
+          message="lost"
+          handleRestart={handleRestart}
+          handleQuitGame={handleQuitGame}
+        />
+      );
 
     if (!difficulty) return <Home changeDifficulty={changeDifficulty} />;
 
@@ -91,6 +109,8 @@ function App() {
         score={gameScores.score}
         bestScore={gameScores.bestGameScore}
         updateGameScore={updateGameScore}
+        cardInfo={cardInfo}
+        getCardsInfo={getCardsInfo}
       />
     );
   };
