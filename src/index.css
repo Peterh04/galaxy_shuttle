@@ -120,6 +120,10 @@ h6 {
   text-wrap: balance;
 }
 
+button {
+  cursor: pointer;
+}
+
 /*
   10. Create a root stacking context
 */

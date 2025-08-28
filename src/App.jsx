@@ -4,6 +4,10 @@ import Level from "./components/Level";
 import Home from "./components/Home";
 import shuffleArr from "../fisherYates";
 import Modal from "./components/Modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVolumeHigh, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
+import ReactHowler from "react-howler";
+import spaceMusic from "./assets/space-music.mp3";
 
 const URL = "https://images-api.nasa.gov/search?q=galaxy";
 
@@ -16,6 +20,11 @@ function App() {
   });
   const [difficulty, setDifficulty] = useState("");
   const [cardInfo, setCardInfo] = useState("");
+  const [isMute, setIsMute] = useState(true);
+
+  const handleMute = () => {
+    setIsMute((prev) => !prev);
+  };
 
   const getCardsInfo = (info) => {
     setCardInfo(info);
@@ -114,7 +123,26 @@ function App() {
       />
     );
   };
-  return <>{renderPage()}</>;
+
+  return (
+    <>
+      {renderPage()}
+
+      <ReactHowler
+        src={spaceMusic}
+        playing={!isMute}
+        loop={true}
+        volume={0.1}
+      />
+      <button onClick={() => handleMute()} className="musicBtn">
+        {isMute ? (
+          <FontAwesomeIcon icon={faVolumeMute} className="fa" />
+        ) : (
+          <FontAwesomeIcon icon={faVolumeHigh} className="fa" />
+        )}
+      </button>
+    </>
+  );
 }
 
 export default App;
