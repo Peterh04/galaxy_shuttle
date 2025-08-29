@@ -8,6 +8,7 @@ export default function Level({
   galaxy,
   handleGameOver,
   isGameOver,
+  handleGameWin,
   score,
   updateGameScore,
   bestScore,
@@ -27,9 +28,13 @@ export default function Level({
       console.log(isGameOver);
 
       throw new Error("Already selected");
+    } else {
+      setSelected((prev) => [...prev, card]);
+      updateGameScore();
+      if (selected.length == 5) {
+        handleGameWin();
+      }
     }
-    setSelected((prev) => [...prev, card]);
-    updateGameScore();
   };
 
   const shuffle = (cards) => {

@@ -14,6 +14,7 @@ const URL = "https://images-api.nasa.gov/search?q=galaxy";
 function App() {
   const [galaxy, setGalaxy] = useState([]);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isGameWon, setIsGameWon] = useState(false);
   const [gameScores, setGameScores] = useState({
     score: 0,
     bestGameScore: 0,
@@ -62,8 +63,14 @@ function App() {
     setIsGameOver(true);
   };
 
+  const handleGameWin = () => {
+    setIsGameWon(true);
+    setIsGameOver(true);
+  };
+
   const handleRestart = () => {
     setIsGameOver(false);
+    setIsGameWon(false);
     setGameScores((prev) => ({ ...prev, score: 0 }));
   };
 
@@ -128,10 +135,19 @@ function App() {
   }, [galaxy, difficulty]);
 
   const renderPage = () => {
-    if (isGameOver)
+    if (isGameOver && isGameWon == false)
       return (
         <Modal
           message="lost"
+          handleRestart={handleRestart}
+          handleQuitGame={handleQuitGame}
+        />
+      );
+
+    if (isGameOver && isGameWon == true)
+      return (
+        <Modal
+          message="Won"
           handleRestart={handleRestart}
           handleQuitGame={handleQuitGame}
         />
@@ -143,7 +159,8 @@ function App() {
       <Level
         galaxy={cardsForDifficulty}
         handleGameOver={handleGameOver}
-        isGameOver={isGameOver}
+        handleGameWin={handleGameWin}
+        isGameWon={isGameWon}
         score={gameScores.score}
         bestScore={gameScores.bestGameScore}
         updateGameScore={updateGameScore}
