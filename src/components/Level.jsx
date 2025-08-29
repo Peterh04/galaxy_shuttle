@@ -13,6 +13,10 @@ export default function Level({
   bestScore,
   cardInfo,
   getCardsInfo,
+  isSpeechPlaying,
+  handleSpeech,
+  playSpeech,
+  stopSpeech,
 }) {
   const [selected, setSelected] = useState([]);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
@@ -67,7 +71,16 @@ export default function Level({
           ))
         )}
       </div>
-      {isInfoModalOpen && <InfoModal info={cardInfo} closeModal={closeModal} />}
+      {isInfoModalOpen && (
+        <InfoModal
+          info={cardInfo}
+          closeModal={closeModal}
+          isSpeechPlaying={isSpeechPlaying}
+          handleSpeech={handleSpeech}
+          playSpeech={playSpeech}
+          stopSpeech={stopSpeech}
+        />
+      )}
     </div>
   );
 }

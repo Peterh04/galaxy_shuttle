@@ -21,6 +21,30 @@ function App() {
   const [difficulty, setDifficulty] = useState("");
   const [cardInfo, setCardInfo] = useState("");
   const [isMute, setIsMute] = useState(true);
+  const [isSpeechPlaying, setIsSpeechPlaying] = useState(false);
+
+  let synth = window.speechSynthesis;
+
+  const playSpeech = (txt) => {
+    if (synth.speaking) synth.cancel();
+
+    let utterance = new SpeechSynthesisUtterance(txt);
+
+    utterance.rate = 1;
+    utterance.onstart = () => setIsSpeechPlaying(true);
+    utterance.onend = () => setIsSpeechPlaying(false);
+    utterance.onerror = () => setIsSpeechPlaying(false);
+    synth.speak(utterance);
+  };
+
+  const stopSpeech = () => {
+    synth.cancel();
+    setIsSpeechPlaying(false);
+  };
+
+  const handleSpeech = () => {
+    setIsSpeechPlaying((prev) => !prev);
+  };
 
   const handleMute = () => {
     setIsMute((prev) => !prev);
@@ -65,6 +89,11 @@ function App() {
     MEDIUM: 12,
     HARD: 20,
   };
+
+  useEffect(() => {
+    synth.cancel();
+    setIsSpeechPlaying(false);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -120,6 +149,10 @@ function App() {
         updateGameScore={updateGameScore}
         cardInfo={cardInfo}
         getCardsInfo={getCardsInfo}
+        isSpeechPlaying={isSpeechPlaying}
+        handleSpeech={handleSpeech}
+        playSpeech={playSpeech}
+        stopSpeech={stopSpeech}
       />
     );
   };
