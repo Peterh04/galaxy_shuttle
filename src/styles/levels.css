@@ -4,7 +4,9 @@
   display: flex;
   justify-content: space-around;
 
-  min-width: 200px;
+  min-width: 400px;
+
+  margin-bottom: 200px;
 }
 
 .levelNav > .levelBtn {
@@ -12,17 +14,14 @@
   height: 40px;
 
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
 
   margin: 10px;
 
   cursor: pointer;
 
-  background-color: var(--accent-primary);
-  color: var(--text-primary);
-
-  box-shadow: 0 0 2px var(--accent-glow), 0 0 6px var(--accent-glow),
-    0 0 4px var(--accent-glow);
+  background-color: rgb(232, 250, 255);
+  color: black;
 
   transition: all 0.3s ease-in-out;
 }
@@ -31,11 +30,15 @@
   box-shadow: 0 0 12px var(--accent-glow), 0 0 24px var(--accent-glow),
     0 0 40px var(--accent-glow);
   transform: scale(1.05);
+
+  background-color: rgb(139, 209, 250);
 }
 
 .levelPage {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   position: relative;
 
@@ -44,186 +47,147 @@
   padding: 50px;
 
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+.levelPage > .gameScoreBoard {
+  display: flex;
+  flex-direction: column;
+
+  padding: 15px;
+  position: absolute;
+
+  top: 20px;
+  right: 80px;
+
+  width: 200px;
+  height: 100px;
+
+  border-radius: 10px;
+
+  background-color: rgb(232, 250, 255);
+
+  z-index: 5555555;
 }
 /* 
 showcase card styles */
 .levelPage > .showCaseCards {
-  display: flex;
-  flex-wrap: wrap;
-
+  display: grid;
+  gap: 2rem;
   justify-content: center;
-  align-items: center;
+  align-content: center;
 
-  margin-top: 50px;
+  margin: 2rem auto;
+
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  max-width: 700px;
+
+  perspective: 1000px;
 }
 
 /* cards styles */
-
+/* Card container */
 .card {
-  display: flex;
-  flex-direction: column;
-
   position: relative;
-
-  height: 250px;
-  max-width: 90vw;
   width: 190px;
+  height: 250px;
 
-  border-radius: 10px;
-
-  background-color: var(--accent-primary);
-
-  margin-bottom: 50px;
-  margin-right: 15px;
-  margin-left: 15px;
-
-  cursor: pointer;
-}
-
-.card > h4 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin-top: 10px;
-  margin-bottom: 10px;
-
-  width: 100%;
-
-  white-space: normal;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-.card > .infoBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-
-  right: 10px;
-  top: 10px;
-
-  width: 30px;
-  height: 30px;
-
-  border: none;
-  border-radius: 50%;
-
+  border-radius: 15px;
+  background: #000; /* fallback if no image */
+  overflow: hidden;
   cursor: pointer;
 
-  z-index: 100;
+  /* Glow border */
+  border: 2px solid transparent;
+  background: linear-gradient(#000, #000) padding-box,
+    linear-gradient(45deg, #3a9bdc, #43b5f7, #1ec8c8) border-box;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card > .imageContainer {
-  display: flex;
-  background-color: transparent;
+/* Hover tilt + glow */
+.card:hover {
+  box-shadow: 0 0 12px var(--accent-glow), 0 0 24px var(--accent-glow),
+    0 0 40px var(--accent-glow);
+  transform: scale(1.05);
+}
 
-  border-radius: 10px;
-
-  z-index: 50;
-
-  height: 200px;
+/* Image fills card */
+.card .imageContainer {
   width: 100%;
-
+  height: 100%;
+  border-radius: inherit;
   overflow: hidden;
 }
 
-.imageContainer > img {
+.card .imageContainer img {
   width: 100%;
   height: 100%;
-
-  object-position: center;
   object-fit: cover;
-
   display: block;
-
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
 }
 
-.card > .cardInfo {
-  z-index: 2000;
+/* Name overlay */
+.card h4 {
   position: absolute;
-
-  min-width: 200px;
-  min-height: 200px;
-  max-height: 250px;
-  max-width: 450px;
-
-  border-radius: 10px;
-
-  top: -50px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 
   padding: 10px;
-  overflow-x: scroll;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+
+  text-shadow: 0 0 5px #43b5f7, 0 0 10px #1ec8c8;
 }
 
-.cardInfo > p {
-  line-height: 1.6rem;
-
-  margin-top: 4%;
-}
-
-.cardInfo > button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Info button */
+.card .infoBtn {
   position: absolute;
-
-  right: 7px;
-  top: 7px;
-
-  width: 35px;
-  height: 35px;
-
-  border: none;
-  border-radius: 50%;
-
-  cursor: pointer;
-
-  z-index: 2500;
-}
-
-.levelPage > .infoModal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 30px;
-
-  width: 400px;
-  height: 300px;
-
-  position: absolute;
-
-  top: 30%;
-  bottom: 50%;
-
-  z-index: 4000;
-  border-radius: 10px;
-
-  overflow-y: scroll;
-  background-color: #1ec8c8;
-}
-
-.infoModal > .modalCloseBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 35px;
-  height: 35px;
-
-  border: none;
-  border-radius: 50%;
-
-  position: absolute;
-
   top: 10px;
   right: 10px;
 
+  width: 32px;
+  height: 32px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: #43b5f7;
+  font-weight: bold;
+  font-size: 1.2rem;
+
   cursor: pointer;
+
+  box-shadow: 0 0 6px #43b5f7, 0 0 12px #1ec8c8;
+  transition: transform 0.3s ease;
+}
+
+.card .infoBtn:hover {
+  transform: scale(1.2);
+}
+
+.gameScoreBoard {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 12px;
+
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.8rem;
+  text-shadow: 0 0 6px rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+.gameScoreBoard h2 {
+  margin: 5px 0;
 }

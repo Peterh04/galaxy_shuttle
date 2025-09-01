@@ -5,7 +5,7 @@ body {
   min-height: 100vh;
   width: 100%;
 
-  background-image: url("./assets/space3.jpg");
+  background-image: url("./assets/planet.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -18,20 +18,32 @@ body {
   align-items: center;
   justify-content: center;
 
-  position: absolute;
+  position: fixed;
   bottom: 20px;
-  left: 50px;
+  left: 30px;
 
   border: none;
 
   height: 40px;
   width: 40px;
 
-  /* padding: 10px 5px 10px 5px; */
-
   border-radius: 50%;
 
   cursor: pointer;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.musicBtn:hover {
+  box-shadow: 0 0 12px var(--accent-glow), 0 0 24px var(--accent-glow),
+    0 0 40px var(--accent-glow);
+  transform: scale(1.05);
+
+  background-color: rgb(139, 209, 250);
+
+  > .fa {
+    color: rgb(37, 168, 244);
+  }
 }
 
 .musicBtn > .fa {

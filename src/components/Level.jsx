@@ -7,7 +7,6 @@ import InfoModal from "./InfoModal";
 export default function Level({
   galaxy,
   handleGameOver,
-  isGameOver,
   handleGameWin,
   score,
   updateGameScore,
@@ -25,9 +24,6 @@ export default function Level({
   const selectCard = (card) => {
     if (selected.includes(card)) {
       handleGameOver();
-      console.log(isGameOver);
-
-      throw new Error("Already selected");
     } else {
       setSelected((prev) => [...prev, card]);
       updateGameScore();
@@ -56,8 +52,14 @@ export default function Level({
   if (!galaxy || galaxy.length == 0) return null;
   return (
     <div className="levelPage">
-      <h2>Game Score : {score}</h2>
-      <h3>Best Game score : {bestScore}</h3>
+      <div className="gameScoreBoard">
+        <h2>
+          Score : <span>{score}</span>
+        </h2>
+        <h2>
+          Best Score : <span>{bestScore}</span>
+        </h2>
+      </div>
       <div className="showCaseCards">
         {galaxy.map((gal, gIndex) =>
           gal.data?.map((item, iIndex) => (

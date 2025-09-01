@@ -1,16 +1,26 @@
-import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { faRotateRight, faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Modal({ message, handleRestart, handleQuitGame }) {
+export default function GameModal({ message, handleRestart, handleQuitGame }) {
+  const isWin = message === "Won";
+
   return (
-    <div className="restartModal modal">
-      <h3>You have {message} the game</h3>
+    <div className="overlay">
+      <div className={`gameModal ${isWin ? "win" : "lose"}`}>
+        <h2 className="gameModalTitle">
+          {isWin ? "🚀 Victory!" : "💀 Game Over"}
+        </h2>
+        <p className="gameModalMessage">You have {message} the game</p>
 
-      <button className="modalRestartBtn" onClick={() => handleRestart()}>
-        <FontAwesomeIcon icon={faRotateRight} className="fa" />
-      </button>
-
-      <button onClick={() => handleQuitGame()}>Quit</button>
+        <div className="gameModalActions">
+          <button className="gamePrimaryBtn" onClick={handleRestart}>
+            <FontAwesomeIcon icon={faRotateRight} /> Restart
+          </button>
+          <button className="gameSecondaryBtn" onClick={handleQuitGame}>
+            <FontAwesomeIcon icon={faDoorOpen} /> Quit
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

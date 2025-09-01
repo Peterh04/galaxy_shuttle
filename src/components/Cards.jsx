@@ -43,7 +43,6 @@ export default function Cards({ image, name, click, getCardsInfo, openModal }) {
         volume={0.3}
         onEnd={() => setIsplaying(false)}
       />
-      ;
     </div>
   );
 }

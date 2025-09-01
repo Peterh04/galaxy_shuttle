@@ -1,41 +1,41 @@
-import {
-  faClose,
-  faPlay,
-  faStop,
-  faVoicemail,
-} from "@fortawesome/free-solid-svg-icons";
+import { faClose, faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 
 export default function InfoModal({
   info,
   closeModal,
   isSpeechPlaying,
-  handleSpeech,
   playSpeech,
   stopSpeech,
 }) {
   return (
-    <div className="infoModal">
-      <h4>{info}</h4>
-      <button
-        className="modalCloseBtn"
-        onClick={() => {
-          stopSpeech();
-          closeModal();
-        }}
-      >
-        <FontAwesomeIcon icon={faClose} className="fa" />
-      </button>
-      {isSpeechPlaying ? (
-        <button className="voiceBtn" onClick={stopSpeech}>
-          <FontAwesomeIcon icon={faStop} />
+    <div className="modalOverlay">
+      <div className="modalContent">
+        <button
+          className="modalCloseBtn"
+          onClick={() => {
+            stopSpeech();
+            closeModal();
+          }}
+        >
+          <FontAwesomeIcon icon={faClose} />
         </button>
-      ) : (
-        <button className="voiceBtn" onClick={() => playSpeech(info)}>
-          <FontAwesomeIcon icon={faPlay} />
-        </button>
-      )}
+
+        <h2 className="modalTitle">Galaxy Info</h2>
+        <p className="modalText">{info}</p>
+
+        <div className="modalActions">
+          {isSpeechPlaying ? (
+            <button className="voiceBtn stop" onClick={stopSpeech}>
+              <FontAwesomeIcon icon={faStop} /> Stop Audio
+            </button>
+          ) : (
+            <button className="voiceBtn play" onClick={() => playSpeech(info)}>
+              <FontAwesomeIcon icon={faPlay} /> Play Audio
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
