@@ -27,11 +27,15 @@ export default function Level({
     } else {
       setSelected((prev) => [...prev, card]);
       updateGameScore();
-      if (selected.length == 5) {
+      if (selected.length == galaxy.length - 1) {
         handleGameWin();
       }
     }
   };
+
+  useEffect(() => {
+    console.log(selected);
+  }, [selectCard]);
 
   const shuffle = (cards) => {
     return cards.sort(() => Math.random() - 0.5);
