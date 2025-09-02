@@ -45,10 +45,6 @@ export default function Level({
     setIsInfoModalOpen(false);
   };
 
-  useEffect(() => {
-    console.log("Selected updated:", selected);
-  }, [selected]);
-
   if (!galaxy || galaxy.length == 0) return null;
   return (
     <div className="levelPage">

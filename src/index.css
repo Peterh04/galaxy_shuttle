@@ -369,3 +369,20 @@ button {
     opacity: 1;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .modalContent {
+    background: var(--accent-glow); /* dark card look */
+    color: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90%;
+    height: 400px;
+
+    overflow-y: scroll;
+    max-width: 600px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    text-align: center;
+  }
+}

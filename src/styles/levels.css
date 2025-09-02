@@ -191,3 +191,20 @@ showcase card styles */
 .gameScoreBoard h2 {
   margin: 5px 0;
 }
+
+@media only screen and (max-width: 600px) {
+  .levelPage > .gameScoreBoard {
+    right: 100px;
+  }
+  .levelPage > .showCaseCards {
+    margin: 8rem auto;
+
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    max-width: 500px;
+  }
+
+  .card {
+    width: 140px;
+    height: 200px;
+  }
+}

@@ -72,3 +72,12 @@
   position: relative;
   z-index: 2;
 }
+
+@media only screen and (max-width: 600px) {
+  .homeLogo {
+    display: flex;
+
+    width: 100%;
+    height: 400px;
+  }
+}

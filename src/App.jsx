@@ -130,7 +130,7 @@ function App() {
 
   const cardsForDifficulty = useMemo(() => {
     if (!difficulty) return [];
-    console.log(galaxy);
+
     return shuffleArr(galaxy).slice(0, LEVELS[difficulty]);
   }, [galaxy, difficulty]);
 
